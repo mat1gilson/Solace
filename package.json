@@ -1,0 +1,113 @@
+{
+  "name": "@solace-protocol/solace-protocol",
+  "version": "1.0.0",
+  "description": "Decentralized Autonomous Agent Commerce Framework on Solana",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/solaceprotocol/solace-protocol.git"
+  },
+  "keywords": [
+    "solana",
+    "blockchain",
+    "autonomous-agents",
+    "ai",
+    "commerce",
+    "defi",
+    "crypto",
+    "typescript",
+    "rust"
+  ],
+  "author": "Solace Protocol Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/solaceprotocol/solace-protocol/issues"
+  },
+  "homepage": "https://solaceprotocol.com",
+  "scripts": {
+    "build": "npm run build:framework && npm run build:api && npm run build:sdks",
+    "build:framework": "cd framework && cargo build --release",
+    "build:api": "cd api && npm run build",
+    "build:sdks": "cd sdks && npm run build:all",
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:framework\"",
+    "dev:api": "cd api && npm run dev",
+    "dev:framework": "cd framework && cargo watch -x run",
+    "test": "npm run test:framework && npm run test:api && npm run test:integration",
+    "test:framework": "cd framework && cargo test",
+    "test:api": "cd api && npm test",
+    "test:integration": "cd tests && npm run integration",
+    "test:coverage": "nyc npm test",
+    "lint": "npm run lint:ts && npm run lint:rust",
+    "lint:ts": "eslint \"**/*.{ts,tsx}\" --fix",
+    "lint:rust": "cd framework && cargo clippy -- -D warnings",
+    "format": "npm run format:ts && npm run format:rust",
+    "format:ts": "prettier \"**/*.{ts,tsx,json,md}\" --write",
+    "format:rust": "cd framework && cargo fmt",
+    "docs": "npm run docs:api && npm run docs:sdk",
+    "docs:api": "cd api && npm run docs",
+    "docs:sdk": "cd sdks && npm run docs",
+    "clean": "rm -rf dist && npm run clean:framework && npm run clean:api",
+    "clean:framework": "cd framework && cargo clean",
+    "clean:api": "cd api && npm run clean",
+    "prepare": "husky install",
+    "precommit": "lint-staged",
+    "release": "semantic-release",
+    "start": "node dist/index.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "concurrently": "^8.2.0",
+    "eslint": "^8.54.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "nyc": "^15.1.0",
+    "prettier": "^3.1.0",
+    "semantic-release": "^22.0.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.87.6",
+    "@solana/wallet-adapter-base": "^0.9.23",
+    "dotenv": "^16.3.1"
+  },
+  "workspaces": [
+    "api",
+    "sdks/*",
+    "tools/*"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ],
+    "*.rs": [
+      "rustfmt"
+    ]
+  },
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "dist/**",
+      "coverage/**"
+    ],
+    "reporter": [
+      "html",
+      "lcov",
+      "text"
+    ],
+    "all": true
+  }
+} 

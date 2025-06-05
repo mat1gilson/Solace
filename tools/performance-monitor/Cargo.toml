@@ -1,0 +1,57 @@
+[package]
+name = "solace-performance-monitor"
+version = "0.1.0"
+edition = "2021"
+authors = ["Solace Protocol Team"]
+description = "Real-time performance monitoring for Solace Protocol agents and network"
+license = "MIT"
+repository = "https://github.com/solaceprotocol/solace"
+
+[dependencies]
+# Core dependencies
+tokio = { version = "1.0", features = ["full", "rt-multi-thread"] }
+clap = { version = "4.0", features = ["derive"] }
+anyhow = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Monitoring and metrics
+prometheus = { version = "0.13", features = ["process"] }
+hyper = { version = "0.14", features = ["full"] }
+metrics = "0.21"
+metrics-prometheus = "0.6"
+
+# System monitoring
+sysinfo = "0.29"
+psutil = "3.2"
+
+# Time series and statistics
+chrono = { version = "0.4", features = ["serde"] }
+hdrhistogram = "7.5"
+
+# Async utilities
+futures = "0.3"
+futures-util = "0.3"
+
+# Configuration
+toml = "0.8"
+config = "0.13"
+
+# Database for metrics storage
+sqlx = { version = "0.7", features = ["runtime-tokio-rustls", "sqlite", "chrono"], optional = true }
+
+# Terminal UI
+crossterm = { version = "0.26", optional = true }
+tui = { version = "0.19", optional = true }
+ratatui = { version = "0.21", optional = true }
+
+[features]
+default = ["storage", "tui-interface"]
+storage = ["sqlx"]
+tui-interface = ["crossterm", "tui", "ratatui"]
+
+[[bin]]
+name = "solace-monitor"
+path = "src/main.rs" 

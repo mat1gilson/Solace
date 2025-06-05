@@ -1,0 +1,46 @@
+[package]
+name = "solace-network-analyzer"
+version = "0.1.0"
+edition = "2021"
+authors = ["Solace Protocol Team"]
+description = "Network analysis and monitoring tool for Solace Protocol"
+license = "MIT"
+repository = "https://github.com/solaceprotocol/solace"
+
+[dependencies]
+# Core dependencies
+tokio = { version = "1.0", features = ["full"] }
+clap = { version = "4.0", features = ["derive"] }
+anyhow = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+# Network monitoring
+reqwest = { version = "0.11", features = ["json"] }
+futures = "0.3"
+petgraph = "0.6"
+
+# Statistics and analysis
+plotters = { version = "0.3", optional = true }
+tui = { version = "0.19", optional = true }
+crossterm = { version = "0.26", optional = true }
+
+# Blockchain integration
+solana-client = "1.17"
+solana-sdk = "1.17"
+
+# Time and date
+chrono = { version = "0.4", features = ["serde"] }
+
+# Configuration
+toml = "0.8"
+
+[features]
+default = ["visualization"]
+visualization = ["plotters", "tui", "crossterm"]
+
+[[bin]]
+name = "solace-network-analyzer"
+path = "src/main.rs" 

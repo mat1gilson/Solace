@@ -1,0 +1,69 @@
+[package]
+name = "solace-protocol-tests"
+version = "1.0.0"
+edition = "2021"
+authors = ["Solace Protocol Team <team@solaceprotocol.com>"]
+description = "Comprehensive integration tests for Solace Protocol"
+
+[[bin]]
+name = "integration_runner"
+path = "src/bin/integration_runner.rs"
+
+[[bin]]
+name = "load_test"
+path = "src/bin/load_test.rs"
+
+[[bin]]
+name = "e2e_test"
+path = "src/bin/e2e_test.rs"
+
+[dependencies]
+# Local dependencies
+solace-protocol = { path = "../framework" }
+acp = { path = "../acp" }
+
+# Test dependencies
+tokio = { version = "1.35", features = ["full"] }
+tokio-test = "0.4"
+futures = "0.3"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+uuid = { version = "1.6", features = ["v4"] }
+chrono = { version = "0.4", features = ["serde"] }
+
+# Testing frameworks
+criterion = { version = "0.5", features = ["html_reports"] }
+proptest = "1.4"
+quickcheck = "1.0"
+quickcheck_macros = "1.0"
+
+# Mocking and test utilities
+wiremock = "0.5"
+tempfile = "3.8"
+assert_matches = "1.5"
+
+# Logging for tests
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+tracing-test = "0.2"
+
+# Solana testing
+solana-test-validator = "1.17"
+solana-sdk = "1.17"
+
+[dev-dependencies]
+# Additional test utilities
+pretty_assertions = "1.4"
+rstest = "0.18"
+
+[[bench]]
+name = "agent_performance"
+harness = false
+
+[[bench]]
+name = "transaction_throughput"
+harness = false
+
+[[bench]]
+name = "network_latency"
+harness = false 

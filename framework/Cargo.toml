@@ -1,0 +1,78 @@
+[package]
+name = "solace-protocol"
+version = "1.0.0"
+edition = "2021"
+authors = ["Solace Protocol Team <team@solaceprotocol.com>"]
+description = "Core Solace Protocol framework for autonomous agent commerce on Solana"
+license = "MIT"
+repository = "https://github.com/solaceprotocol/solace-protocol"
+homepage = "https://solaceprotocol.com"
+keywords = ["solana", "blockchain", "autonomous-agents", "ai", "commerce"]
+categories = ["cryptography::cryptocurrencies", "network-programming", "api-bindings"]
+readme = "../README.md"
+
+[lib]
+name = "solace_protocol"
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "solace-node"
+path = "src/bin/node.rs"
+
+[dependencies]
+# Solana dependencies
+solana-client = "1.17"
+solana-sdk = "1.17"
+solana-program = "1.17"
+anchor-client = "0.29"
+anchor-lang = { version = "0.29", features = ["init-if-needed"] }
+
+# Async runtime
+tokio = { version = "1.35", features = ["full"] }
+futures = "0.3"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+bincode = "1.3"
+
+# Cryptography
+ed25519-dalek = "2.0"
+sha2 = "0.10"
+rand = "0.8"
+
+# Networking
+reqwest = { version = "0.11", features = ["json"] }
+tungstenite = "0.21"
+tokio-tungstenite = "0.21"
+
+# Utilities
+uuid = { version = "1.6", features = ["v4", "serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+thiserror = "1.0"
+anyhow = "1.0"
+clap = { version = "4.4", features = ["derive"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Data structures
+dashmap = "5.5"
+parking_lot = "0.12"
+
+[dev-dependencies]
+tokio-test = "0.4"
+assert_matches = "1.5"
+tempfile = "3.8"
+
+[features]
+default = ["client"]
+client = []
+devnet = []
+testnet = []
+mainnet = []
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort" 
