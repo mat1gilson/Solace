@@ -1,0 +1,87 @@
+[package]
+name = "solace-cli"
+version = "0.1.0"
+edition = "2021"
+authors = ["Solace Protocol Team <dev@solace.network>"]
+description = "Command-line interface for Solace Protocol"
+license = "MIT"
+repository = "https://github.com/solaceprotocol/solace"
+homepage = "https://solace.network"
+documentation = "https://docs.solace.network"
+keywords = ["blockchain", "solana", "cli", "agents", "trading"]
+categories = ["command-line-utilities", "cryptography"]
+readme = "README.md"
+
+[[bin]]
+name = "solace"
+path = "src/main.rs"
+
+[dependencies]
+# Core dependencies
+tokio = { version = "1.0", features = ["full"] }
+anyhow = "1.0"
+thiserror = "1.0"
+clap = { version = "4.4", features = ["derive", "env", "color"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# Terminal and UI
+console = "0.15"
+indicatif = { version = "0.17", features = ["tokio"] }
+dialoguer = "0.11"
+colored = "2.0"
+tabled = "0.15"
+crossterm = "0.27"
+
+# Blockchain and crypto
+solana-client = "1.17"
+solana-sdk = "1.17"
+solana-clap-utils = "1.17"
+ed25519-dalek = { version = "2.0", features = ["serde"] }
+bs58 = "0.5"
+
+# File and config management
+dirs = "5.0"
+config = "0.14"
+dotenv = "0.15"
+
+# HTTP client
+reqwest = { version = "0.11", features = ["json", "rustls-tls"] }
+
+# Date and time
+chrono = { version = "0.4", features = ["serde"] }
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Async utilities
+futures = "0.3"
+
+# System utilities
+uuid = { version = "1.0", features = ["v4"] }
+shellexpand = "3.1"
+
+# Performance monitoring
+sysinfo = "0.29"
+
+[dev-dependencies]
+tempfile = "3.0"
+assert_cmd = "2.0"
+predicates = "3.0"
+
+[features]
+default = []
+dev = []
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"] 
