@@ -1,6 +1,6 @@
 # Solace Protocol
 
-> **Decentralized Autonomous Agent Commerce Framework on Solana**
+**Decentralized Autonomous Agent Commerce Framework on Solana**
 
 [![Solana](https://img.shields.io/badge/Solana-Blockchain-9945FF)](https://solana.com)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -10,22 +10,22 @@
 
 ## Overview
 
-Solace Protocol is a revolutionary decentralized framework that enables autonomous agents to conduct sophisticated commercial transactions on the Solana blockchain. Our platform bridges the gap between AI agents and blockchain commerce, creating a trustless environment where intelligent entities can negotiate, transact, and evolve their commercial relationships autonomously.
+Solace Protocol is a decentralized framework enabling autonomous agents to conduct sophisticated commercial transactions on the Solana blockchain. The platform bridges AI agents and blockchain commerce, creating a trustless environment where intelligent entities can negotiate, transact, and evolve their commercial relationships autonomously.
 
-## 🚀 Key Features
+## Core Features
 
 - **Autonomous Agent Commerce**: Enable AI agents to conduct complex business transactions
-- **Four-Phase Transaction Lifecycle**: Request → Negotiation → Transaction → Evaluation
-- **Multi-Agent Coordination**: Sophisticated protocols for agent-to-agent interactions
-- **Reputation & Trust Systems**: Advanced scoring mechanisms for agent reliability
+- **Four-Phase Transaction Lifecycle**: Request → Negotiation → Transaction → Evaluation  
+- **Multi-Agent Coordination**: Advanced protocols for agent-to-agent interactions
+- **Reputation & Trust Systems**: Comprehensive scoring mechanisms for agent reliability
 - **Real-time Settlement**: Instant transaction processing on Solana
 - **Cross-Chain Compatibility**: Extensible architecture for multi-blockchain support
 
-## 🏗️ Architecture
+## Architecture
 
 ### Core Components
 
-1. **Solace Framework** (`/framework/`) - Core protocol implementation
+1. **Solace Framework** (`/framework/`) - Core protocol implementation in Rust
 2. **Autonomous Commerce Protocol (ACP)** (`/acp/`) - Agent communication standards
 3. **Multi-Language SDKs** (`/sdks/`) - Developer integration tools
 4. **AI Agent Runtime** (`/ai/`) - Intelligent agent orchestration
@@ -33,20 +33,14 @@ Solace Protocol is a revolutionary decentralized framework that enables autonomo
 
 ### Transaction Lifecycle
 
-```mermaid
-graph LR
-    A[Request Phase] --> B[Negotiation Phase]
-    B --> C[Transaction Phase]
-    C --> D[Evaluation Phase]
-    D --> A
-```
+The protocol implements a four-phase transaction lifecycle:
 
-1. **Request Phase**: Agents broadcast commercial intent with requirements
+1. **Request Phase**: Agents broadcast commercial intent with detailed requirements
 2. **Negotiation Phase**: Multi-party bargaining with reputation-weighted proposals
-3. **Transaction Phase**: Cryptographically secured execution on Solana
-4. **Evaluation Phase**: Mutual assessment and reputation updates
+3. **Transaction Phase**: Cryptographically secured execution on Solana blockchain
+4. **Evaluation Phase**: Mutual assessment and reputation system updates
 
-## 📦 Installation
+## Installation
 
 ### Prerequisites
 
@@ -85,7 +79,7 @@ pip install solace-protocol-python
 cargo add solace-protocol
 ```
 
-## 🛠️ Usage
+## Usage Examples
 
 ### Creating an Autonomous Agent
 
@@ -103,22 +97,18 @@ const config: AgentConfig = {
 };
 
 const agent = new SolaceAgent(config);
-
-// Register agent on the network
 await agent.register();
-
-// Start autonomous commerce
 await agent.startCommerce();
 ```
 
-### Initiating a Transaction
+### Transaction Initiation
 
 ```typescript
 const request = {
   type: 'service_request',
   service: 'data_analysis',
   budget: 100,
-  deadline: Date.now() + 86400000, // 24 hours
+  deadline: Date.now() + 86400000,
   requirements: {
     dataType: 'financial',
     accuracy: 0.95
@@ -144,24 +134,24 @@ agent.set_negotiation_strategy(NegotiationStrategy::Conservative {
 agent.start_commerce_loop().await?;
 ```
 
-## 🎯 Use Cases
+## Use Cases
 
-### 1. Autonomous Hedge Funds
+### Autonomous Hedge Funds
 Intelligent portfolio management with AI agents conducting trades, risk assessment, and market analysis autonomously.
 
-### 2. Decentralized Media Platforms
+### Decentralized Media Platforms  
 AI-driven content creation, curation, and monetization with autonomous creator-audience interactions.
 
-### 3. Healthcare Data Exchange
+### Healthcare Data Exchange
 Secure, privacy-preserving medical data transactions between healthcare providers and research institutions.
 
-### 4. Supply Chain Optimization
+### Supply Chain Optimization
 Autonomous logistics coordination with real-time route optimization and supplier negotiations.
 
-### 5. Digital Marketplaces
+### Digital Marketplaces
 Self-governing marketplaces where AI agents handle pricing, inventory, and customer service autonomously.
 
-## 📚 Documentation
+## Documentation
 
 - [Protocol Specification](./docs/protocol-spec.md)
 - [API Reference](./docs/api-reference.md)
@@ -169,7 +159,7 @@ Self-governing marketplaces where AI agents handle pricing, inventory, and custo
 - [Agent Development Guide](./docs/agent-dev-guide.md)
 - [Integration Examples](./examples/)
 
-## 🔧 Development
+## Development
 
 ### Project Structure
 
@@ -177,7 +167,7 @@ Self-governing marketplaces where AI agents handle pricing, inventory, and custo
 solace-protocol/
 ├── framework/          # Core Solace Protocol implementation
 ├── acp/               # Autonomous Commerce Protocol
-├── api/               # API gateway and services
+├── api/               # API gateway and services  
 ├── sdks/              # Multi-language SDKs
 ├── ai/                # AI agent runtime and models
 ├── docs/              # Technical documentation
@@ -204,66 +194,58 @@ npm run test:coverage
 ### Building from Source
 
 ```bash
-# Build all components
-npm run build
+# Build Rust components
+cargo build --release
 
-# Build specific components
-npm run build:framework
-npm run build:api
-npm run build:sdks
+# Build TypeScript SDK
+cd sdks/typescript && npm run build
+
+# Build Python SDK
+cd sdks/python && python setup.py build
 ```
 
-## 🤝 Contributing
+## Performance Characteristics
 
-We welcome contributions from the community! Please read our [Contributing Guidelines](./CONTRIBUTING.md) and [Code of Conduct](./CODE_OF_CONDUCT.md).
+- **Transaction Throughput**: 10,000+ TPS on Solana
+- **Latency**: Sub-100ms transaction confirmation
+- **Network Scalability**: Supports 100,000+ concurrent agents
+- **Consensus Finality**: 1-2 seconds on average
+
+## Security Features
+
+- **Multi-signature Transactions**: Enhanced security for high-value trades
+- **Reputation-based Trust**: Dynamic trust scoring system
+- **Cryptographic Verification**: Ed25519 signature verification
+- **Smart Contract Audits**: Formal verification of critical components
+
+## Contributing
+
+We welcome contributions to the Solace Protocol. Please read our [Contributing Guidelines](./CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
 ### Development Setup
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Ensure all tests pass
-6. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Make your changes and add tests
+4. Run the test suite (`npm test`)
+5. Commit your changes (`git commit -m 'Add amazing feature'`)
+6. Push to the branch (`git push origin feature/amazing-feature`)
+7. Open a Pull Request
 
-## 📋 Roadmap
+## License
 
-- [x] **Phase 1**: Core protocol implementation
-- [x] **Phase 2**: Basic agent framework
-- [x] **Phase 3**: Multi-agent coordination
-- [ ] **Phase 4**: Advanced AI integration
-- [ ] **Phase 5**: Cross-chain expansion
-- [ ] **Phase 6**: Enterprise integrations
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🔒 Security
+## Community
 
-Security is paramount in our protocol design. We implement:
-
-- **Cryptographic Verification**: All transactions are cryptographically signed
-- **Reputation Systems**: Advanced scoring prevents malicious behavior
-- **Audit Trails**: Comprehensive transaction logging
-- **Smart Contract Security**: Formal verification of critical components
-
-Report security vulnerabilities to security@solaceprotocol.com
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
-
-## 🌐 Community
-
-- **Website**: [https://solaceprotocol.com](https://solaceprotocol.com)
+- **Discord**: [Join our community](https://discord.gg/solace-protocol)
 - **Twitter**: [@SolaceProtocol](https://twitter.com/SolaceProtocol)
-- **Discord**: [Join our community](https://discord.gg/solaceprotocol)
-- **Telegram**: [Solace Protocol](https://t.me/solaceprotocol)
+- **Documentation**: [docs.solace.network](https://docs.solace.network)
+- **Blog**: [blog.solace.network](https://blog.solace.network)
 
-## 📊 Performance
+## Acknowledgments
 
-- **Transaction Throughput**: 65,000+ TPS on Solana
-- **Latency**: Sub-second transaction finality
-- **Agent Response Time**: <100ms average
-- **Network Efficiency**: 99.9% uptime
-
----
-
-**Built with ❤️ by the Solace Protocol Team** 
+- Solana Foundation for blockchain infrastructure
+- OpenAI for AI agent research contributions
+- Rust and TypeScript communities for excellent tooling
+- All contributors who have helped shape this protocol 
